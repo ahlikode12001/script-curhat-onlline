@@ -1,0 +1,31 @@
+#directory browsing
+Options All -Indexes
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>
+
+ 
+RewriteEngine on
+RewriteRule ^(.*)\.html$ $1.php [nc]
+
+RewriteEngine on
+RewriteRule ^beranda/?$ index.php
+RewriteRule ^curhat-now/?$ curhat-now.php
+
+
+RewriteEngine On
+RewriteRule ^user/([a-zA-Z0-9_-]+)$ details-user.php?unique_id=$1
+RewriteRule ^user/([a-zA-Z0-9_-]+)/$ details-user.php?unique_id=$1
+
+RewriteEngine On
+RewriteRule ^baca/([a-zA-Z0-9-/]+)$ baca-curhat.php?urlSlug=$1
+RewriteRule ^baca/([a-zA-Z-0-9-]+)/ baca-curhat.php?urlSlug=$1
+
+Deny from all
+ErrorDocument 403 "nothing is here"
+
+ 
